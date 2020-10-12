@@ -1,9 +1,34 @@
 import React from 'react'
 import {TodoTemplate} from '../../templates'
+import {useSelector, useDispatch} from 'react-redux'
+import {
+  todoAddAction,
+  todoToggleAction
+} from '../../redux/actions'
 
 const TodoPage = props => {
+  const [text, setText] = React.useState('')
+  const dispatch = useDispatch()
+  const todoList = useSelector(state => state.todo)
+
+  const onAddTodo = () => {
+    dispatch(todoAddAction(text))
+    setText('')
+  }
+
+  const onToggleTodoList = key => {
+    console.log('onToggleTodoList: ', key)
+    dispatch(todoToggleAction(key))
+  }
+
   return (
-    <TodoTemplate />
+    <TodoTemplate
+      text={text}
+      setText={setText}
+      todoList={todoList}
+      onAddTodo={onAddTodo}
+      onToggleTodoList={onToggleTodoList}
+    />
   )
 }
 
