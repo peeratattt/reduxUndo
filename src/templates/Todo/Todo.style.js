@@ -6,6 +6,8 @@ export default StyleSheet.create({
   },
   viewBtnFilter: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    backgroundColor: 'green',
+    height: 'auto',
+    borderRadius: 8,
   }
 })
