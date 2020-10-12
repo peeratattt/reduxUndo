@@ -20,15 +20,40 @@ const TodoTemplate = props => {
       </View>
     )
   }
+
+  const RenderBtnFilter = () => {
+    const lengthAll = props.todoList.length
+    const lengthActive = props.todoList.filter(v => v.status === false).length
+    const lengthCompleted = props.todoList.filter(v => v.status === true).length
+    return (
+      <View style={styles.viewBtnFilter}>
+        <ButtonComponent style={{flex: 1}} label={`All (${lengthAll})`} />
+        <ButtonComponent style={{flex: 1}} label={`Active (${lengthActive})`} />
+        <ButtonComponent style={{flex: 1}} label={`Completed (${lengthCompleted})`} />
+      </View>
+    )
+  }
+
+  const RenderBtnUndoRedo = () => {
+    return (
+      <View style={styles.viewBtnFilter}>
+        <ButtonComponent style={{flex: 1}} label="Undo" />
+        <ButtonComponent style={{flex: 1}} label="Redo" />
+      </View>
+    )
+  }
+
   return (
     <PageComponent>
       <InputTextComponent value={props.text} onChangeText={props.setText} />
       <ButtonComponent label="ADD" onPress={props.onAddTodo} />
+      <RenderBtnUndoRedo />
       <ScrollView>
         {
           props.todoList.map(RenderTodoList)
         }
       </ScrollView>
+      <RenderBtnFilter />
     </PageComponent>
   )
 }

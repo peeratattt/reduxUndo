@@ -9,7 +9,7 @@ const todos = (state = initState, action) => {
         ...state,
         {
           text: action.payload,
-          completed: false
+          status: false
         }
       ]
     case types.TODO_TOGGLE:

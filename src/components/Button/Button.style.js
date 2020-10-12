@@ -7,7 +7,7 @@ export default StyleSheet.create({
     height: 42,
     backgroundColor: 'green',
     borderRadius: 8,
-    marginHorizontal: 16
+    marginBottom: 16,
   },
   textLabel: {
     color: '#fff'

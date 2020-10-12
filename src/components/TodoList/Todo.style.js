@@ -4,7 +4,10 @@ export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: 16,
+    paddingVertical: 8,
+    borderBottomColor: '#666',
+    borderBottomWidth: 0.5,
+    paddingHorizontal: 4,
   },
   textLabel: {
     marginLeft: 16,

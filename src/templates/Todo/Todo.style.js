@@ -3,6 +3,9 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
   container: {},
   viewTodoList: {
-    marginTop: 16,
+  },
+  viewBtnFilter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 })
