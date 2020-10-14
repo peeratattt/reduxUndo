@@ -10,6 +10,7 @@ const InputTextComponent = props => {
   return (
     <View style={styles.container}>
       <TextInput
+        onSubmitEditing={props.onSubmitEditing}
         placeholder={props.placeholder}
         style={styles.textInput}
         onChangeText={props.onChangeText}
@@ -23,6 +24,7 @@ InputTextComponent.propTypes = {
   onChangeText: PropTypes.func,
   value: PropTypes.string,
   placeholder: PropTypes.string,
+  onSubmitEditing: PropTypes.func,
 }
 
 export default InputTextComponent

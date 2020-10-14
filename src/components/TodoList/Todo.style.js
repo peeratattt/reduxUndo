@@ -9,6 +9,9 @@ export default StyleSheet.create({
     borderBottomWidth: 0.5,
     paddingHorizontal: 4,
   },
+  view: {
+    backgroundColor: '#fff'
+  },
   textLabel: {
     marginLeft: 16,
   }

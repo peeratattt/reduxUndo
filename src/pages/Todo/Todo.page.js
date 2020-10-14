@@ -19,7 +19,6 @@ const TodoPage = props => {
   }
 
   const onToggleTodoList = key => {
-    console.log('onToggleTodoList: ', key)
     dispatch(todoToggleAction(key))
   }
 

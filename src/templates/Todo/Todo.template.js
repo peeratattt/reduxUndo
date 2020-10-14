@@ -2,6 +2,8 @@ import React from 'react'
 import {
   View,
   ScrollView,
+  Text,
+  Dimensions,
 } from 'react-native'
 import {
   PageComponent,
@@ -11,14 +13,19 @@ import {
 } from '../../components'
 import PropTypes from 'prop-types'
 import styles from './Todo.style'
+import {SwipeListView} from 'react-native-swipe-list-view'
 
 const TodoTemplate = props => {
   const [selected, setSelected] = React.useState('All')
-  const RenderTodoList = (v, k) => {
+  const RenderTodoList = (data) => {
+    const {item, index} = data
     return (
-      <View style={styles.viewTodoList} key={k}>
-        <TodoListComponent label={v.text} status={v.status} onPress={() => props.onToggleTodoList(k)} />
-      </View>
+      <TodoListComponent
+        key={index}
+        label={item.text}
+        status={item.status}
+        onPress={() => props.onToggleTodoList(index)}
+      />
     )
   }
 
@@ -69,20 +76,46 @@ const TodoTemplate = props => {
   }
 
   const onPressFilter = (key) => {
-    console.log('onPressFilter: ', key)
     setSelected(key)
+  }
+
+  const renderHiddenItem = () => (
+    <View style={styles.rowBack}>
+        <View style={[styles.backRightBtn, styles.backRightBtnRight]}>
+            <Text style={styles.backTextWhite}>Delete</Text>
+        </View>
+    </View>
+  );
+
+  const onSwipeValueChange = (data) => {
+    console.log('onSwipeValueChange: ', data)
   }
 
   return (
     <PageComponent>
-      <InputTextComponent value={props.text} onChangeText={props.setText} placeholder="Insert Todo" />
-      <ButtonComponent label="ADD" onPress={props.onAddTodo} style={{marginBottom: 16}}/>
-      <RenderBtnFilter onPress={onPressFilter} />
-      <ScrollView style={styles.scrollView}>
-        {
-          props.todoList.map(RenderTodoList)
-        }
-      </ScrollView>
+      <InputTextComponent
+        onSubmitEditing={props.onAddTodo}
+        value={props.text}
+        onChangeText={props.setText}
+        placeholder="Insert Todo"
+      />
+      <ButtonComponent
+        label="ADD"
+        onPress={props.onAddTodo}
+        style={{marginBottom: 16}}
+      />
+      <View style={styles.scrollView}>
+        <RenderBtnFilter
+          onPress={onPressFilter}
+        />
+        <SwipeListView
+          data={props.todoList}
+          renderItem={RenderTodoList}
+          renderHiddenItem={renderHiddenItem}
+          // rightOpenValue={-Dimensions.get('window').width}
+          onSwipeValueChange={onSwipeValueChange}
+        />
+      </View>
       <RenderBtnUndoRedo />
     </PageComponent>
   )
