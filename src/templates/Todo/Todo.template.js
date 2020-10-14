@@ -75,15 +75,15 @@ const TodoTemplate = props => {
 
   return (
     <PageComponent>
-      <InputTextComponent value={props.text} onChangeText={props.setText} />
+      <InputTextComponent value={props.text} onChangeText={props.setText} placeholder="Insert Todo" />
       <ButtonComponent label="ADD" onPress={props.onAddTodo} style={{marginBottom: 16}}/>
-      <RenderBtnUndoRedo />
+      <RenderBtnFilter onPress={onPressFilter} />
       <ScrollView style={styles.scrollView}>
         {
           props.todoList.map(RenderTodoList)
         }
       </ScrollView>
-      <RenderBtnFilter onPress={onPressFilter} />
+      <RenderBtnUndoRedo />
     </PageComponent>
   )
 }

@@ -10,6 +10,7 @@ const InputTextComponent = props => {
   return (
     <View style={styles.container}>
       <TextInput
+        placeholder={props.placeholder}
         style={styles.textInput}
         onChangeText={props.onChangeText}
         value={props.value}
@@ -21,6 +22,7 @@ const InputTextComponent = props => {
 InputTextComponent.propTypes = {
   onChangeText: PropTypes.func,
   value: PropTypes.string,
+  placeholder: PropTypes.string,
 }
 
 export default InputTextComponent

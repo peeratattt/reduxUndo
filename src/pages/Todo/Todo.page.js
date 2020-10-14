@@ -12,8 +12,10 @@ const TodoPage = props => {
   const todoList = useSelector(state => state.todo)
 
   const onAddTodo = () => {
-    dispatch(todoAddAction(text))
-    setText('')
+    if (text !== '') {
+      dispatch(todoAddAction(text))
+      setText('')
+    }
   }
 
   const onToggleTodoList = key => {
