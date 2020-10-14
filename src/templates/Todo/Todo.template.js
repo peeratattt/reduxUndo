@@ -13,6 +13,7 @@ import PropTypes from 'prop-types'
 import styles from './Todo.style'
 
 const TodoTemplate = props => {
+  const [selected, setSelected] = React.useState('All')
   const RenderTodoList = (v, k) => {
     return (
       <View style={styles.viewTodoList} key={k}>
@@ -21,26 +22,55 @@ const TodoTemplate = props => {
     )
   }
 
-  const RenderBtnFilter = () => {
+
+
+  const RenderBtnFilter = ({onPress}) => {
     const lengthAll = props.todoList.length
     const lengthActive = props.todoList.filter(v => v.status === false).length
     const lengthCompleted = props.todoList.filter(v => v.status === true).length
+    const btnArr = [
+      {
+        title: 'All',
+        length: lengthAll,
+      },
+      {
+        title: 'Active',
+        length: lengthActive,
+      },
+      {
+        title: 'Completed',
+        length: lengthCompleted,
+      },
+    ]
     return (
       <View style={styles.viewBtnFilter}>
-        <ButtonComponent style={{flex: 1}} label={`All (${lengthAll})`} />
-        <ButtonComponent style={{flex: 1}} label={`Active (${lengthActive})`} />
-        <ButtonComponent style={{flex: 1}} label={`Completed (${lengthCompleted})`} />
+        {
+          btnArr?.map((v, k) => (
+            <ButtonComponent
+              key={k}
+              style={{flex: 1}}
+              label={`${v.title} (${v.length})`}
+              selected={selected === v.title}
+              onPress={() => onPress(v.title)}
+            />
+          ))
+        }
       </View>
     )
   }
 
   const RenderBtnUndoRedo = () => {
     return (
-      <View style={styles.viewBtnFilter}>
+      <View style={styles.viewBtnUndoRedo}>
         <ButtonComponent style={{flex: 1}} label="Undo" />
         <ButtonComponent style={{flex: 1}} label="Redo" />
       </View>
     )
+  }
+
+  const onPressFilter = (key) => {
+    console.log('onPressFilter: ', key)
+    setSelected(key)
   }
 
   return (
@@ -53,7 +83,7 @@ const TodoTemplate = props => {
           props.todoList.map(RenderTodoList)
         }
       </ScrollView>
-      <RenderBtnFilter />
+      <RenderBtnFilter onPress={onPressFilter} />
     </PageComponent>
   )
 }

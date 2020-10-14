@@ -5,7 +5,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 42,
-    backgroundColor: 'green',
     borderRadius: 8,
   },
   textLabel: {
