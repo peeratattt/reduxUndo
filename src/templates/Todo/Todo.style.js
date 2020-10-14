@@ -4,6 +4,11 @@ export default StyleSheet.create({
   container: {},
   viewTodoList: {
   },
+  scrollView: {
+    backgroundColor: '#eee',
+    borderRadius: 8,
+    marginVertical: 8,
+  },
   viewBtnFilter: {
     flexDirection: 'row',
     backgroundColor: '#999',

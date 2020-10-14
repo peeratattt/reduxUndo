@@ -78,7 +78,7 @@ const TodoTemplate = props => {
       <InputTextComponent value={props.text} onChangeText={props.setText} />
       <ButtonComponent label="ADD" onPress={props.onAddTodo} style={{marginBottom: 16}}/>
       <RenderBtnUndoRedo />
-      <ScrollView>
+      <ScrollView style={styles.scrollView}>
         {
           props.todoList.map(RenderTodoList)
         }
